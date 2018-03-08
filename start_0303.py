@@ -32,12 +32,12 @@ def truncation_create(plane_list):
 
 def create_cube(x_length, y_length, z_length, start_point, boundary_type_set = 'reflective'):
 
-    x_pos = openmc.XPlane(x0 = max(x_length,start_point.x), boundary_type = boundary_type_set)
-    x_neg = openmc.XPlane(x0 = min(x_length,start_point.x), boundary_type = boundary_type_set)
-    y_pos = openmc.YPlane(y0 = max(y_length,start_point.y), boundary_type = boundary_type_set)
-    y_neg = openmc.YPlane(y0 = min(y_length,start_point.y), boundary_type = boundary_type_set)
-    z_pos = openmc.ZPlane(z0 = max(z_length,start_point.z), boundary_type = boundary_type_set)
-    z_neg = openmc.ZPlane(z0 = min(z_length,start_point.z), boundary_type = boundary_type_set)
+    x_pos = openmc.XPlane(x0 = max(x_length+start_point.x,start_point.x), boundary_type = boundary_type_set)
+    x_neg = openmc.XPlane(x0 = min(x_length+start_point.x,start_point.x), boundary_type = boundary_type_set)
+    y_pos = openmc.YPlane(y0 = max(y_length+start_point.y,start_point.y), boundary_type = boundary_type_set)
+    y_neg = openmc.YPlane(y0 = min(y_length+start_point.y,start_point.y), boundary_type = boundary_type_set)
+    z_pos = openmc.ZPlane(z0 = max(z_length+start_point.z,start_point.z), boundary_type = boundary_type_set)
+    z_neg = openmc.ZPlane(z0 = min(z_length+start_point.z,start_point.z), boundary_type = boundary_type_set)
 
     plane_list = []
     plane_list.append([x_pos,x_neg])
