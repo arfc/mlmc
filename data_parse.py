@@ -1,5 +1,5 @@
 import h5py
-filename = 'statepoint.100.h5'
+filename = 'summary.h5'
 f = h5py.File(filename, 'r')
 
 # List all groups
