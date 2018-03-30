@@ -1,4 +1,5 @@
 import sys
+import csv
 import h5py
 
 filename = sys.argv[-1]
@@ -8,9 +9,22 @@ except:
     print("there is no such file")
     exit()
 # List all groups
+key_list = []
 datasetNames = [n for n in f.keys()]
 for n in datasetNames:
-	print(n)
+	key_list.append(n)
+
+print(key_list)
+
+
+import csv
+point_state_csv =open("point_state.csv","w")
+writer = csv.writer(point_state_csv)
+writer.writerow(key_list)
+
+
+
+
 
 # Get the data
 global_tallies = f['global_tallies']
