@@ -16,8 +16,6 @@ for n in datasetNames:
 
 print(key_list)
 
-
-import csv
 point_state_csv =open("point_state.csv","w")
 writer = csv.writer(point_state_csv)
 writer.writerow(key_list)
@@ -33,13 +31,15 @@ for i in range(len(key_list)):
 		temp_data = temp[:]
 		for data in temp_data:
 			result.append(data)
+			# print("wocao shape is ",data.shape)
+			print("wocao data is ",data)
 		writer.writerow(result)
 	except:
 		print(key_list[i]," is empty")
-global_tallies = f['global_tallies']
-global_tallies_data = global_tallies[:]
-print(global_tallies_data)
 
+# global_tallies = f['global_tallies']
+# global_tallies_data = global_tallies[:]
+# print(global_tallies_data)
 
 
 
