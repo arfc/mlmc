@@ -27,6 +27,17 @@ writer.writerow(key_list)
 
 
 # Get the data
+
+for i in range(key_list):
+	result = []
+	result.append(key_list[i]);
+	temp = f[key_list[i]]
+	temp_data = temp[:]
+	for data in temp_data:
+		result.append(data)
+	writer.writerow(result)
+
+
 global_tallies = f['global_tallies']
 global_tallies_data = global_tallies[:]
 print(global_tallies_data)
