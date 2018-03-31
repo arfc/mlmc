@@ -103,6 +103,17 @@ for line in read:
 	  # for i in range(1,len(line)):
 	  # 	print(line[i])
 c.close()
+
+space_x = np.zeros(len(space))
+space_y = np.zeros(len(space))
+space_z = np.zeros(len(space))
+
+for data,x,y,z in space,space_x,space_y,space_z:
+	x = data[0]
+	y = data[1]
+	z = data[2]
+
+print(space_x)
 # print(space[0])
 # print(velocity[0])
 # print(group)
