@@ -103,7 +103,7 @@ tallies.export_to_xml()
 
 openmc.run()
 
-openmc.capi.statepoint_write(filename="pincell_test_statepoint.h5")
+# openmc.capi.statepoint_write(filename="pincell_test_statepoint.h5")
 
 p = openmc.Plot()
 p.filename = 'pinplot'
