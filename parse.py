@@ -28,7 +28,7 @@ writer.writerow(key_list)
 
 # Get the data
 
-for i in range(key_list):
+for i in range(key_list.length()):
 	result = []
 	result.append(key_list[i]);
 	temp = f[key_list[i]]
