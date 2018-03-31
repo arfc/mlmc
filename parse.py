@@ -32,6 +32,7 @@ for i in range(len(key_list)):
 	result = []
 	result.append(key_list[i]);
 	temp = f[key_list[i]]
+	print("temp is ", temp)
 	temp_data = temp[:]
 	for data in temp_data:
 		result.append(data)
