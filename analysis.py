@@ -6,9 +6,6 @@ import unicodedata
 from copy import deepcopy
 import re
 
-
-# space
-# velocity = 
 def is_number(s):
     try:
         float(s)
@@ -21,13 +18,7 @@ def is_number(s):
     except (TypeError, ValueError):
         pass
     return False
-
-# def spilt_space(senternce_data):
-# 	space = []
-# 	cur = 0
-# 	count = 0
-# 	while(i<len(senternce_data)):
-# 		if 
+ 
 def form_sentence_data(sentence_data):
 	# result = sentence_data.split(',')
 	# for data in result:
@@ -93,26 +84,14 @@ for i in range(len(space)):
 # print(space_[0])
 # print(velocity[0])
 # print(group)
+# positive = []
+# for i in range(len(group)):
+# 	if group[i]>0:
+# 		print(group[i])
 
-
-# def randrange(n, vmin, vmax):
-#  '''
-#  Helper function to make an array of random numbers having shape (n, )
-#  with each number distributed Uniform(vmin, vmax).
-#  '''
-#  return (vmax - vmin)*np.random.rand(n) + vmin
- 
 fig = plt.figure()
 ax = fig.add_subplot(111, projection='3d')
  
-# n = 100
- 
-# # For each set of style and range settings, plot n random points in the box
-# # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
-# for c, m, zlow, zhigh in [('r', 'o', -50, -25), ('b', '^', -30, -5)]:
-#  xs = randrange(n, 23, 32)
-#  ys = randrange(n, 0, 100)
-#  zs = randrange(n, zlow, zhigh)
 ax.scatter(space_x, space_y, space_z, c='r', marker='o')
 ax.set_xlabel('X Label')
 ax.set_ylabel('Y Label')
