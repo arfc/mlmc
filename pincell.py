@@ -105,6 +105,15 @@ openmc.run()
 
 openmc.capi.statepoint_write(filename="pincell_test_statepoint.h5")
 
+p = openmc.Plot()
+p.filename = 'pinplot'
+p.width = (pitch, pitch)
+p.pixels = (200, 200)
+p.color_by = 'material'
+p.colors = {uo2: 'yellow', water: 'blue'}
+
+plots = openmc.Plots([p])
+plots.export_to_xml()
 
 
 
