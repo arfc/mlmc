@@ -6,6 +6,9 @@ import unicodedata
 from copy import deepcopy
 import re
 
+from sklearn.cluster import KMeans
+from scipy.spatial.distance import cdist
+
 def is_number(s):
     try:
         float(s)
@@ -21,12 +24,6 @@ def is_number(s):
  
 def form_sentence_data(sentence_data):
 	# result = sentence_data.split(',')
-	# for data in result:
-	# 	# print(type(data))
-	# 	print(data)
-	# 	print(re.sub('-{1,2}', '', 'pro----gram-files'))
-
-	# 	print("dealt data",line)
 	for char in '[]() ':
 		sentence_data = re.sub('\\'+char,'',sentence_data)
 	data_list = sentence_data.split(',')
@@ -35,15 +32,7 @@ def form_sentence_data(sentence_data):
 	# print("len is ", len(sentence_data))
 	for index in range(len(data_list)):
 		result[index] = float(data_list[index])
-		# print(float(data_list[index]))
-		# result[index]+= result[index]
 
-	# print(result)
-	# # result = re.sub('\[','', sentence_data)
-	# # result = re.sub('\]','', result)
-	# # sentence_data = re.sub('[]','', sentence_data)
-	# # sentence_data = re.sub(' ','', sentence_data)
-	# # print(re.sub('\(','', 'pro----,[gram]-files'))
 	return result
 
 
@@ -54,7 +43,6 @@ c=open("point_state.csv","r") #以rb的方式打开csv文件
 read=csv.reader(c)
 for line in read:
 	if(line[0] == 'source_bank'):
-		# print("wocaonima")
 		for index in range(1,len(line)):
 
 			data_list = form_sentence_data(line[index])
@@ -80,22 +68,31 @@ for i in range(len(space)):
 	space_y[i] = space[i][1]
 	space_z[i] = space[i][2]
 
+print(len(space))
+np_space = np.array(space)
+meandistortions = []
+K = range(1, 10)
+for k in K:
+    kmeans = KMeans(n_clusters=k)
+    kmeans.fit(np_space)
+    meandistortions.append(sum(np.min(cdist(np_space, kmeans.cluster_centers_, 'euclidean'), axis=1)) / np_space.shape[0])
 
-# print(space_[0])
-# print(velocity[0])
-# print(group)
-# positive = []
-# for i in range(len(group)):
-# 	if group[i]>0:
-# 		print(group[i])
-
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
- 
-ax.scatter(space_x, space_y, space_z, c='r', marker='o')
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
- 
+plt.figure()
+plt.grid(True)
+plt1 = plt.subplot(2,1,1)
+plt1.plot(np_space[:,0],np_space[:,1],'k.');
+plt2 = plt.subplot(2,1,2)
+plt2.plot(K, meandistortions, 'bx-')
 plt.show()
+
+
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
+ 
+# ax.scatter(space_x, space_y, space_z, c='r', marker='o')
+# ax.set_xlabel('X Label')
+# ax.set_ylabel('Y Label')
+# ax.set_zlabel('Z Label')
+ 
+# plt.show()
 
