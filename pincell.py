@@ -38,7 +38,7 @@ outside_sphere = +sph
 z_plane = openmc.ZPlane(z0=0)
 northern_hemisphere = -sph & +z_plane
 northern_hemisphere.bounding_box
-cell = openmc.Cell()
+cell = openmc.Cell(0,'base')
 cell.region = northern_hemisphere
 
 cell.fill = water
