@@ -60,11 +60,10 @@ def form_sentence_data(sentence_data):
 	# 	print(re.sub('-{1,2}', '', 'pro----gram-files'))
 
 	# 	print("dealt data",line)
-	print(sentence_data)
 	for char in '[]() ':
 		sentence_data = re.sub('\\'+char,'',sentence_data)
 	data_list = sentence_data.split(',')
-	print(data_list)
+	# print(data_list)
 	result = np.zeros(len(data_list))
 	# print("len is ", len(sentence_data))
 	for index in range(len(data_list)):
@@ -82,25 +81,32 @@ def form_sentence_data(sentence_data):
 
 
 space = []
-# velocity = []
+velocity = []
+group = []
 c=open("point_state.csv","r") #以rb的方式打开csv文件
 read=csv.reader(c)
 for line in read:
 	if(line[0] == 'source_bank'):
 		# print("wocaonima")
-		data_list = form_sentence_data(line[1])
-		print(data_list)
+		for index in range(1,len(line)):
 
-		# for index in range(1,len(line)):
-
-		# 	data_list = form_sentence_data(line[index])
-			# print(data_list)
-
-			# temp = []
-			# temp.append()
-			# space.append()
-			# space.append(line[index][5])
+			data_list = form_sentence_data(line[index])
+			temp_space = []
+			for i in range(1,4):
+				temp_space.append(data_list[i])
+			space.append(temp_space)
+			temp_velocity = []
+			for i in range(4,7):
+				temp_velocity.append(data_list[i])
+			velocity.append(temp_velocity)
+			group.append(data_list[len(data_list)-1])
 	  # for i in range(1,len(line)):
 	  # 	print(line[i])
 c.close()
-print(space)
+# print(space[0])
+# print(velocity[0])
+# print(group)
+
+
+
+
