@@ -35,7 +35,7 @@ for i in range(len(key_list)):
 			result.append(data)
 		writer.writerow(result)
 	except:
-		print("there is no such file")
+		print(key_list[i]," is empty")
 global_tallies = f['global_tallies']
 global_tallies_data = global_tallies[:]
 print(global_tallies_data)
