@@ -6,31 +6,7 @@ import unicodedata
 from copy import deepcopy
 import re
 
-# def randrange(n, vmin, vmax):
-#  '''
-#  Helper function to make an array of random numbers having shape (n, )
-#  with each number distributed Uniform(vmin, vmax).
-#  '''
-#  return (vmax - vmin)*np.random.rand(n) + vmin
- 
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
- 
-# n = 100
- 
-# # For each set of style and range settings, plot n random points in the box
-# # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
-# for c, m, zlow, zhigh in [('r', 'o', -50, -25), ('b', '^', -30, -5)]:
-#  xs = randrange(n, 23, 32)
-#  ys = randrange(n, 0, 100)
-#  zs = randrange(n, zlow, zhigh)
-#  ax.scatter(xs, ys, zs, c=c, marker=m)
- 
-# ax.set_xlabel('X Label')
-# ax.set_ylabel('Y Label')
-# ax.set_zlabel('Z Label')
- 
-# plt.show()
+
 # space
 # velocity = 
 def is_number(s):
@@ -108,16 +84,39 @@ space_x = np.zeros(len(space))
 space_y = np.zeros(len(space))
 space_z = np.zeros(len(space))
 
-for data,x,y,z in space,space_x,space_y,space_z:
-	x = data[0]
-	y = data[1]
-	z = data[2]
+for i in range(len(space)):
+	space_x[i] = space[i][0]
+	space_y[i] = space[i][1]
+	space_z[i] = space[i][2]
 
-print(space_x)
-# print(space[0])
+
+# print(space_[0])
 # print(velocity[0])
 # print(group)
 
 
-
+# def randrange(n, vmin, vmax):
+#  '''
+#  Helper function to make an array of random numbers having shape (n, )
+#  with each number distributed Uniform(vmin, vmax).
+#  '''
+#  return (vmax - vmin)*np.random.rand(n) + vmin
+ 
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ 
+# n = 100
+ 
+# # For each set of style and range settings, plot n random points in the box
+# # defined by x in [23, 32], y in [0, 100], z in [zlow, zhigh].
+# for c, m, zlow, zhigh in [('r', 'o', -50, -25), ('b', '^', -30, -5)]:
+#  xs = randrange(n, 23, 32)
+#  ys = randrange(n, 0, 100)
+#  zs = randrange(n, zlow, zhigh)
+ax.scatter(space_x, space_y, space_z, c='r', marker='o')
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
+ax.set_zlabel('Z Label')
+ 
+plt.show()
 
