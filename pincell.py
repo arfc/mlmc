@@ -112,8 +112,8 @@ p.pixels = (200, 200)
 p.color_by = 'material'
 p.colors = {uo2: 'yellow', water: 'blue'}
 
-plots = openmc.Plots([p])
-plots.export_to_xml()
+# plots = openmc.Plots([p])
+# plots.export_to_xml()
 
 
 
