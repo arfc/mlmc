@@ -32,7 +32,7 @@ for i in range(len(key_list)):
 		for data in temp_data:
 			result.append(data)
 			# print("wocao shape is ",data.shape)
-			print("wocao data is ",data)
+			# print("wocao data is ",data)
 		writer.writerow(result)
 	except:
 		print(key_list[i]," is empty")
