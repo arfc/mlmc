@@ -59,40 +59,46 @@ for line in read:
 	  # 	print(line[i])
 c.close()
 
-space_x = np.zeros(len(space))
-space_y = np.zeros(len(space))
-space_z = np.zeros(len(space))
 
-for i in range(len(space)):
-	space_x[i] = space[i][0]
-	space_y[i] = space[i][1]
-	space_z[i] = space[i][2]
+final = []
 
-print(len(space))
-np_space = np.array(space)
-meandistortions = []
-K = range(1, 10)
-for k in K:
-    kmeans = KMeans(n_clusters=k)
-    kmeans.fit(np_space)
-    meandistortions.append(sum(np.min(cdist(np_space, kmeans.cluster_centers_, 'euclidean'), axis=1)) / np_space.shape[0])
+with open("test.csv","r") as 
 
-plt.figure()
-plt.grid(True)
-plt1 = plt.subplot(2,1,1)
-plt1.plot(np_space[:,0],np_space[:,1],'k.');
-plt2 = plt.subplot(2,1,2)
-plt2.plot(K, meandistortions, 'bx-')
-plt.show()
+# space_x = np.zeros(len(space))
+# space_y = np.zeros(len(space))
+# space_z = np.zeros(len(space))
 
+# for i in range(len(space)):
+# 	space_x[i] = space[i][0]
+# 	space_y[i] = space[i][1]
+# 	space_z[i] = space[i][2]
 
-# fig = plt.figure()
-# ax = fig.add_subplot(111, projection='3d')
- 
-# ax.scatter(space_x, space_y, space_z, c='r', marker='o')
-# ax.set_xlabel('X Label')
-# ax.set_ylabel('Y Label')
-# ax.set_zlabel('Z Label')
- 
+# print(len(space))
+# np_space = np.array(space)
+# meandistortions = []
+# K = range(1, 10)
+# for k in K:
+#     kmeans = KMeans(n_clusters=k)
+#     kmeans.fit(np_space)
+#     meandistortions.append(sum(np.min(cdist(np_space, kmeans.cluster_centers_, 'euclidean'), axis=1)) / np_space.shape[0])
+
+# plt.figure()
+# plt.grid(True)
+# plt1 = plt.subplot(2,1,1)
+# plt1.plot(np_space[:,0],np_space[:,1],'k.');
+# plt2 = plt.subplot(2,1,2)
+# plt2.plot(K, meandistortions, 'bx-')
 # plt.show()
+space = np.array(space)
+# print(space[:,0])
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ 
+ax.scatter(space[:,0], space[:,1], space[:,2], c='r', marker='o')
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
+ax.set_zlabel('Z Label')
+ 
+plt.show()
 

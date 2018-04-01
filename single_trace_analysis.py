@@ -1,8 +1,8 @@
 import h5py
 import csv
 import sys
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+# import matplotlib.pyplot as plt
+# from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 
 #get the batch number,generation number,particle number from the arguments
@@ -69,7 +69,7 @@ def get_single_track(filename):
 for filename in file_name_list:
 	get_single_track(filename)
 
-temp = result_in_total[0][len(result_in_total[0])-1]
+# temp = result_in_total[0][len(result_in_total[0])-1]
 
 # count_dup = 0
 # for it in range(len(result_in_total)):
@@ -81,18 +81,18 @@ temp = result_in_total[0][len(result_in_total[0])-1]
 # 					print(result_in_total[it][len(result_in_total[it])-1])
 # 					print("there is a dup")
 
-for it in final:
-	print(it)
+# for it in final:
+# 	print(it)
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+# fig = plt.figure()
+# ax = fig.add_subplot(111, projection='3d')
  
-ax.scatter(final[:,0],final[:,1], final[:,2], c='r', marker='o')
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
+# ax.scatter(final[:,0],final[:,1], final[:,2], c='r', marker='o')
+# ax.set_xlabel('X Label')
+# ax.set_ylabel('Y Label')
+# ax.set_zlabel('Z Label')
  
-plt.show()
+# plt.show()
 
 
 
