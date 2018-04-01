@@ -10,7 +10,7 @@ uo2.set_density('g/cm3', 10.0)
 zirconium = openmc.Material(2, "zirconium")
 zirconium.add_element('Zr', 1.0)
 zirconium.set_density('g/cm3', 3.0)
-print(zirconium)
+# print(zirconium)
 
 water = openmc.Material(3, "h2o")
 water.add_nuclide('H1', 2.0)
@@ -95,7 +95,7 @@ settings.batches = 100
 settings.inactive = 10
 settings.particles = 1000
 settings.export_to_xml()
-print(settings.trace([1,1,1]))
+print("fuck is ",settings.batches(1))
 
 cell_filter = openmc.CellFilter(fuel)
 
