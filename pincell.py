@@ -95,7 +95,8 @@ settings.batches = 100
 settings.inactive = 10
 settings.particles = 1000
 settings.export_to_xml()
-print("fuck is ",settings.batches(1))
+temp_list = [1,2,3]
+print("fuck is ",settings.trace(temp_list))
 
 cell_filter = openmc.CellFilter(fuel)
 
