@@ -70,6 +70,7 @@ count_dup = 0
 for it in range(len(result_in_total)):
 	for ij in range(len(result_in_total)):
 		count_dup+=1
+		print(it,ij)
 		if (result_in_total[it][len(result_in_total[it])-1] == result_in_total[ij][len(result_in_total[ij])-1]).all() & it!=ij:
 
 					print(result_in_total[it][len(result_in_total[it])-1])
