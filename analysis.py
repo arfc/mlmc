@@ -116,22 +116,38 @@ print(final)
 space = np.array(space)
 # # print(space[:,0])
 
-fig = plt.figure()
-source_bank = fig.add_subplot(111, projection='3d')
+fig = plt.figure(12)
+source_bank = fig.add_subplot(331, projection='3d')
  
-source_bank.scatter(space[:,0], space[:,1], space[:,2], c='r', marker='o')
+source_bank.scatter(space[:,0], space[:,1], space[:,2], c='r', marker='.')
 source_bank.set_xlabel('X Label')
 source_bank.set_ylabel('Y Label')
 source_bank.set_zlabel('Z Label')
 
-
-final_track = fig.add_subplot(111, projection='3d')
+final_track = fig.add_subplot(332, projection='3d')
  
-final_track.scatter(final[:,0], final[:,1], final[:,2], c='b', marker='o')
+final_track.scatter(final[:,0], final[:,1], final[:,2], c='b', marker='.')
 final_track.set_xlabel('X Label')
 final_track.set_ylabel('Y Label')
 final_track.set_zlabel('Z Label')
 
+final_xy = fig.add_subplot(334)
+final_xy.scatter(final[:,0], final[:,1], c='b', marker='.')
+final_xy.set_xlabel('X')
+final_xy.set_ylabel('Y')
+
+
+final_yz = fig.add_subplot(335)
+final_yz.scatter(final[:,1], final[:,2], c='y', marker='.')
+final_yz.set_xlabel('Y')
+final_yz.set_ylabel('Z')
+# final_yz.title("yz plain")
+
+final_xz = fig.add_subplot(336)
+final_xz.scatter(final[:,1], final[:,2], c='g', marker='.')
+final_xz.set_xlabel('Y')
+final_xz.set_ylabel('Z')
+# final_xz.title("xz plain")
 
 plt.show()
 
