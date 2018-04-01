@@ -14,6 +14,7 @@ except:
     exit()
 #get all the file names as a list
 file_name_list = []
+
 for i in range(batch_number):
 	for j in range(generation_number):
 		for k in range(particle_number):
@@ -36,23 +37,25 @@ def get_single_track(filename):
 
 	key_list = []
 	datasetNames = [n for n in f.keys()]
+
 	for n in datasetNames:
 		key_list.append(n)
 
 	for i in range(len(key_list)):
-	result = []
-	result.append(key_list[i]);
+		result = []
+		result.append(key_list[i]);
 
-	temp = f[key_list[i]]
-	try:
-		temp_data = temp[:]
-		for data in temp_data:
-			result.append(data)
+		temp = f[key_list[i]]
+
+		try:
+			temp_data = temp[:]
+			for data in temp_data:
+				result.append(data)
 			# print("wocao shape is ",data.shape)
 			# print("wocao data is ",data)
-		writer.writerow(result)
-	except:
-		print(key_list[i]," is empty")
+			writer.writerow(result)
+		except:
+			print(key_list[i]," is empty")
 
 for filename in file_name_list:
 	get_single_track(filename)
