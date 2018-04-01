@@ -65,10 +65,14 @@ for filename in file_name_list:
 	get_single_track(filename)
 
 temp = result_in_total[0][len(result_in_total[0])-1]
+count_dup = 0
 for it in result_in_total:
 	for ij in result_in_total:
+		count_dup+=1
 		if it[len(it)-1] == ij[len(ij)-1]:
 			print("there is a dup")
+		else:
+			print(count_dup)
 
 
 
