@@ -24,7 +24,7 @@ for i in range(batch_number):
 total = i*j*k
 
 point_state_csv =open(csv_name,"w")
-writer = csv.writer()
+writer = csv.writer(point_state_csv)
 writer.writerow(key_list)  
 
 # for filename in file_name_list:
