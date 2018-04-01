@@ -2,7 +2,8 @@ import sys
 import csv
 import h5py
 
-filename = sys.argv[-1]
+csv_name = sys.argv[-1]
+filename = sys.argv[-2]
 try:
     f = h5py.File(filename, 'r')
 except:
@@ -16,7 +17,7 @@ for n in datasetNames:
 
 print(key_list)
 
-point_state_csv =open("point_state.csv","w")
+point_state_csv =open(csv_name,"w")
 writer = csv.writer(point_state_csv)
 writer.writerow(key_list)
 

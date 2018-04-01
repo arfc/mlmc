@@ -100,7 +100,7 @@ else:
 	print("wairi")
 
 temp_list = [1,2,3]
-print(settings.batches)
+print(settings.track)
 settings.export_to_xml()
 
 cell_filter = openmc.CellFilter(fuel)
@@ -114,8 +114,7 @@ t.scores = ['total', 'fission', 'absorption', '(n,gamma)']
 tallies = openmc.Tallies([t])
 tallies.export_to_xml()
 
-openmc.run()
-
+openmc.run(tracks = True)
 
 p = openmc.Plot()
 p.filename = 'pinplot'
@@ -126,7 +125,7 @@ p.colors = {uo2: 'yellow', water: 'blue'}
 
 plots = openmc.Plots([p])
 plots.export_to_xml()
-
-
+print("track is ",settings.track)
+print("trace is ",settings.trace)
 
 
