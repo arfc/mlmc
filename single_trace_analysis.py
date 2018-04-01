@@ -62,6 +62,5 @@ def get_single_track(filename):
 for filename in file_name_list:
 	get_single_track(filename)
 
-Get the data
-print(key_list)
+
 
