@@ -13,13 +13,12 @@ water = openmc.Material(3, "h2o")
 water.add_nuclide('H1', 2.0)
 water.add_nuclide('O16', 1.0)
 water.set_density('g/cm3', 1.0)
-water.add_s_alpha_beta('c_H_in_H2O')
 
+water.add_s_alpha_beta('c_H_in_H2O')
 mats = openmc.Materials([uo2, zirconium, water])
 mats = openmc.Materials()
 mats.append(uo2)
 mats += [zirconium, water]
-
 
 water.remove_nuclide('O16')
 water.add_element('O', 1.0)
@@ -28,9 +27,6 @@ uo2_three = openmc.Material()
 uo2_three.add_element('U', 1.0, enrichment=3.0)
 uo2_three.add_element('O', 2.0)
 uo2_three.set_density('g/cc', 10.0)
-mats.export_to_xml()
-
-
 
 sph = openmc.Sphere(R=1.0)
 inside_sphere = -sph
@@ -95,7 +91,6 @@ settings.inactive = 10
 settings.particles = 1000
 settings.export_to_xml()
 
-
 cell_filter = openmc.CellFilter(fuel)
 
 t = openmc.Tally(1)
@@ -109,7 +104,6 @@ tallies.export_to_xml()
 
 openmc.run()
 
-# openmc.capi.statepoint_write(filename="pincell_test_statepoint.h5")
 
 p = openmc.Plot()
 p.filename = 'pinplot'
