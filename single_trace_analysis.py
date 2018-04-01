@@ -15,9 +15,9 @@ except:
 #get all the file names as a list
 file_name_list = []
 
-for i in range(1,batch_number):
-	for j in range(1,generation_number):
-		for k in range(1,particle_number):
+for i in range(1,batch_number+1):
+	for j in range(1,generation_number+1):
+		for k in range(1,particle_number+1):
 			temp_name = str("track_"+str(i)+"_"+str(j)+"_"+str(k)+".h5")
 			file_name_list.append(temp_name)
 print(file_name_list)
@@ -62,6 +62,6 @@ def get_single_track(filename):
 for filename in file_name_list:
 	get_single_track(filename)
 
-# Get the data
-# print(key_list)
+Get the data
+print(key_list)
 
