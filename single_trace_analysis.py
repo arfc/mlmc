@@ -15,9 +15,9 @@ except:
 #get all the file names as a list
 file_name_list = []
 
-for i in range(batch_number):
-	for j in range(generation_number):
-		for k in range(particle_number):
+for i in range(int(batch_number)):
+	for j in range(int(generation_number)):
+		for k in range(int(particle_number)):
 			temp_name = str("track_"+i+"_"+j+"_"+k+".h5")
 			file_name_list.append(temp_name)
 #total particles
@@ -29,11 +29,12 @@ writer.writerow(key_list)
 
 # for filename in file_name_list:
 def get_single_track(filename):
+	print("wocao")
 	try:
-    	f = h5py.File(filename, 'r')
+		f = h5py.File(filename, 'r')
 	except:
-    	print("there is no such file")
-    	exit()
+		print("there is no such file")
+		exit()
 
 	key_list = []
 	datasetNames = [n for n in f.keys()]
