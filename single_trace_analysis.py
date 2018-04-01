@@ -29,10 +29,10 @@ writer = csv.writer(point_state_csv)
 
 # for filename in file_name_list:
 def get_single_track(filename):
-	print("wocao")
 	try:
 		f = h5py.File(filename, 'r')
 	except:
+		print(filename)
 		print("there is no such file")
 		exit()
 
