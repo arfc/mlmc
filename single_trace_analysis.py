@@ -21,7 +21,7 @@ for i in range(1,batch_number):
 			temp_name = str("track_"+str(i)+"_"+str(j)+"_"+str(k)+".h5")
 			file_name_list.append(temp_name)
 #total particles
-total = i*j*k
+total = batch_number* generation_number*particle_number
 
 point_state_csv =open(csv_name,"w")
 writer = csv.writer(point_state_csv)
