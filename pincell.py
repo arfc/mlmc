@@ -128,4 +128,5 @@ plots.export_to_xml()
 print("track is ",settings.track)
 print("trace is ",settings.trace)
 
+print(settings.track)
 
