@@ -89,13 +89,13 @@ geom.export_to_xml()
 
 point = openmc.stats.Point((0, 0, 0))
 src = openmc.Source(space=point)
-
 settings = openmc.Settings()
 settings.source = src
 settings.batches = 100
 settings.inactive = 10
 settings.particles = 1000
 settings.export_to_xml()
+print(settings.trace([1,1,1]))
 
 cell_filter = openmc.CellFilter(fuel)
 
