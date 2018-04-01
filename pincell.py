@@ -56,10 +56,10 @@ fuel = openmc.Cell(4, 'fuel')
 fuel.fill = uo2
 fuel.region = fuel_region
 
-gap = openmc.Cell(2, 'air gap')
+gap = openmc.Cell(5, 'air gap')
 gap.region = gap_region
 
-clad = openmc.Cell(3, 'clad')
+clad = openmc.Cell(6, 'clad')
 clad.fill = zirconium
 clad.region = clad_region
 
@@ -73,7 +73,7 @@ top = openmc.YPlane(y0=pitch/2, boundary_type='reflective')
 
 water_region = +left & -right & +bottom & -top & +clad_or
 
-moderator = openmc.Cell(4, 'moderator')
+moderator = openmc.Cell(7, 'moderator')
 moderator.fill = water
 moderator.region = water_region
 box = openmc.get_rectangular_prism(width=pitch, height=pitch,
