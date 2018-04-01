@@ -2,8 +2,8 @@ import h5py
 import csv
 import sys
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
-
 
 #get the batch number,generation number,particle number from the arguments
 try:
