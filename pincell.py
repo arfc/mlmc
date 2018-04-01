@@ -94,7 +94,10 @@ settings.source = src
 settings.batches = 100
 settings.inactive = 10
 settings.particles = 1000
+if settings is None:
+	print("wocaonima")
 settings.export_to_xml()
+
 temp_list = [1,2,3]
 settings.trace(temp_list)
 
