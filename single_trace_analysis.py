@@ -32,6 +32,8 @@ writer = csv.writer(point_state_csv)
 
 #
 result_in_total = []
+final = []
+
 def get_single_track(filename):
 	try:
 		f = h5py.File(filename, 'r')
@@ -57,6 +59,7 @@ def get_single_track(filename):
 			for data in temp_data:
 				result.append(data)
 			result_in_total.append(result)
+			final.append(result[len(result)-1])
 			writer.writerow(result)
 		except:
 			print(key_list[i]," is empty")
@@ -66,16 +69,18 @@ for filename in file_name_list:
 
 temp = result_in_total[0][len(result_in_total[0])-1]
 
-count_dup = 0
-for it in range(len(result_in_total)):
-	for ij in range(len(result_in_total)):
-		count_dup+=1
-		print(it,ij)
-		if (result_in_total[it][len(result_in_total[it])-1] == result_in_total[ij][len(result_in_total[ij])-1]).all() & it!=ij:
+# count_dup = 0
+# for it in range(len(result_in_total)):
+# 	for ij in range(len(result_in_total)):
+# 		count_dup+=1
+# 		print(it,ij)
+# 		if (result_in_total[it][len(result_in_total[it])-1] == result_in_total[ij][len(result_in_total[ij])-1]).all() & it!=ij:
 
-					print(result_in_total[it][len(result_in_total[it])-1])
-					print("there is a dup")
+# 					print(result_in_total[it][len(result_in_total[it])-1])
+# 					print("there is a dup")
 
+for it in final:
+	print(it)
 
 
 
