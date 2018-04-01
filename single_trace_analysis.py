@@ -82,5 +82,15 @@ temp = result_in_total[0][len(result_in_total[0])-1]
 for it in final:
 	print(it)
 
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ 
+ax.scatter(final[:,0],final[:,1], final[:,2], c='r', marker='o')
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
+ax.set_zlabel('Z Label')
+ 
+plt.show()
+
 
 
