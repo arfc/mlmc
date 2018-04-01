@@ -6,7 +6,7 @@ uo2.add_nuclide('U238', 0.97)
 uo2.add_nuclide('O16', 2.0)
 uo2.set_density('g/cm3', 10.0)
 mats.export_to_xml()
-!materials.xml
+!cat materials.xml
 
 
 
