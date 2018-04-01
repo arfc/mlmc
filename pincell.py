@@ -19,6 +19,7 @@ mats = openmc.Materials([uo2, zirconium, water])
 mats = openmc.Materials()
 mats.append(uo2)
 mats += [zirconium, water]
+mats.export_to_xml()
 
 water.remove_nuclide('O16')
 water.add_element('O', 1.0)
