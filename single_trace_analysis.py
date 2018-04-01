@@ -1,6 +1,8 @@
 import h5py
 import csv
 import sys
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 #get the batch number,generation number,particle number from the arguments
