@@ -20,6 +20,7 @@ for i in range(1,batch_number):
 		for k in range(1,particle_number):
 			temp_name = str("track_"+str(i)+"_"+str(j)+"_"+str(k)+".h5")
 			file_name_list.append(temp_name)
+print(file_name_list)
 #total particles
 total = batch_number* generation_number*particle_number
 
@@ -38,6 +39,7 @@ def get_single_track(filename):
 
 	key_list = []
 	datasetNames = [n for n in f.keys()]
+
 
 	for n in datasetNames:
 		key_list.append(n)
