@@ -29,6 +29,9 @@ writer = csv.writer(point_state_csv)
 # writer.writerow(key_list)  
 
 # for filename in file_name_list:
+
+#
+result_in_total = []
 def get_single_track(filename):
 	try:
 		f = h5py.File(filename, 'r')
@@ -39,7 +42,6 @@ def get_single_track(filename):
 
 	key_list = []
 	datasetNames = [n for n in f.keys()]
-
 
 	for n in datasetNames:
 		key_list.append(n)
@@ -54,13 +56,16 @@ def get_single_track(filename):
 			temp_data = temp[:]
 			for data in temp_data:
 				result.append(data)
-			print(result)
+			result_in_total.append(result)
 			writer.writerow(result)
 		except:
 			print(key_list[i]," is empty")
 
 for filename in file_name_list:
 	get_single_track(filename)
+
+for it in result_in_total:
+	print(it[len(it)-1])
 
 
 
