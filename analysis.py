@@ -35,6 +35,22 @@ def form_sentence_data(sentence_data):
 
 	return result
 
+def form_sentence_data_np(sentence_data):
+	# result = sentence_data.split(',')
+	for char in '[]':
+		sentence_data = re.sub('\\'+char,'',sentence_data)
+	data_list = sentence_data.split(' ')
+	try:
+		while(1):
+			data_list.remove('')
+	except:
+		print("finish")
+	result = np.zeros(len(data_list))
+	# print("len is ", len(sentence_data))
+	for index in range(len(data_list)):
+		result[index] = float(data_list[index])
+
+	return result
 
 space = []
 velocity = []
@@ -62,7 +78,15 @@ c.close()
 
 final = []
 
-with open("test.csv","r") as 
+with open("test.csv","r") as track:
+	reader = csv.reader(track)
+	for line in reader:
+		data_list = form_sentence_data_np(line[len(line)-1])
+		final.append(data_list)
+
+final = np.array(final)
+print(final)
+
 
 # space_x = np.zeros(len(space))
 # space_y = np.zeros(len(space))
@@ -90,15 +114,24 @@ with open("test.csv","r") as
 # plt2.plot(K, meandistortions, 'bx-')
 # plt.show()
 space = np.array(space)
-# print(space[:,0])
+# # print(space[:,0])
 
 fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
+source_bank = fig.add_subplot(111, projection='3d')
  
-ax.scatter(space[:,0], space[:,1], space[:,2], c='r', marker='o')
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
-ax.set_zlabel('Z Label')
+source_bank.scatter(space[:,0], space[:,1], space[:,2], c='r', marker='o')
+source_bank.set_xlabel('X Label')
+source_bank.set_ylabel('Y Label')
+source_bank.set_zlabel('Z Label')
+
+
+final_track = fig.add_subplot(111, projection='3d')
  
+final_track.scatter(final[:,0], final[:,1], final[:,2], c='b', marker='o')
+final_track.set_xlabel('X Label')
+final_track.set_ylabel('Y Label')
+final_track.set_zlabel('Z Label')
+
+
 plt.show()
 
