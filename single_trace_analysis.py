@@ -52,8 +52,7 @@ def get_single_track(filename):
 			temp_data = temp[:]
 			for data in temp_data:
 				result.append(data)
-			# print("wocao shape is ",data.shape)
-			# print("wocao data is ",data)
+			print(result)
 			writer.writerow(result)
 		except:
 			print(key_list[i]," is empty")
