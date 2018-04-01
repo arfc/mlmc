@@ -9,7 +9,7 @@ uo2.set_density('g/cm3', 10.0)
 
 zirconium = openmc.Material(2, "zirconium")
 zirconium.add_element('Zr', 1.0)
-zirconium.set_density('g/cm3', 6.6)
+zirconium.set_density('g/cm3', 2.0)
 print(zirconium)
 
 water = openmc.Material(3, "h2o")
