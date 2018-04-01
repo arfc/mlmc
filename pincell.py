@@ -96,9 +96,11 @@ settings.inactive = 10
 settings.particles = 1000
 if settings is None:
 	print("wocaonima")
+else:
+	print("wairi")
 
-temp_list = [1,2,3]
-settings.trace(temp_list)
+# temp_list = [1,2,3]
+# settings.trace(temp_list)
 settings.export_to_xml()
 
 cell_filter = openmc.CellFilter(fuel)
