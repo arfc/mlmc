@@ -67,13 +67,12 @@ for filename in file_name_list:
 temp = result_in_total[0][len(result_in_total[0])-1]
 
 count_dup = 0
-for it in result_in_total:
-	for ij in result_in_total:
+for it in range(len(result_in_total)):
+	for ij in range(len(result_in_total)):
 		count_dup+=1
-		if (it[len(it)-1][0] == ij[len(ij)-1][0]):
-			if (it[len(it)-1][1] == ij[len(ij)-1][1]):
-				if (it[len(it)-1][2] == ij[len(ij)-1][2]):
-					print(it[len(it)-1])
+		if (result_in_total[it][len(result_in_total[it])-1] == result_in_total[ij][len(result_in_total[ij])-1]).all() & it!=ij:
+
+					print(result_in_total[it][len(result_in_total[it])-1])
 					print("there is a dup")
 
 
