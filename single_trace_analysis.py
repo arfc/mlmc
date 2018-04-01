@@ -5,9 +5,9 @@ import sys
 
 #get the batch number,generation number,particle number from the arguments
 try:
-	batch_number = sys.argv[-4]
-	generation_number = sys.argv[-3]
-	particle_number = sys.argv[-2]
+	batch_number = int(sys.argv[-4])
+	generation_number = int(sys.argv[-3])
+	particle_number = int(sys.argv[-2])
 	csv_name = sys.argv[-1]
 except:
     print("There should be four arguments standing for batch number,generation number,particle number,csv name repectively")
@@ -15,10 +15,10 @@ except:
 #get all the file names as a list
 file_name_list = []
 
-for i in range(int(batch_number)):
-	for j in range(int(generation_number)):
-		for k in range(int(particle_number)):
-			temp_name = str("track_"+i+"_"+j+"_"+k+".h5")
+for i in range(batch_number):
+	for j in range(generation_number):
+		for k in range(particle_number):
+			temp_name = str("track_"+str(i)+"_"+str(j)+"_"+str(k)+".h5")
 			file_name_list.append(temp_name)
 #total particles
 total = i*j*k
