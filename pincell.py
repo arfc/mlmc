@@ -100,7 +100,7 @@ else:
 	print("wairi")
 
 temp_list = [1,2,3]
-print(settings.trace())
+print(settings.batches)
 settings.export_to_xml()
 
 cell_filter = openmc.CellFilter(fuel)
