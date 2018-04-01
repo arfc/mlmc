@@ -9,7 +9,7 @@ uo2.set_density('g/cm3', 10.0)
 
 zirconium = openmc.Material(2, "zirconium")
 zirconium.add_element('Zr', 1.0)
-zirconium.set_density('g/cm3', 2.0)
+zirconium.set_density('g/cm3', 3.0)
 print(zirconium)
 
 water = openmc.Material(3, "h2o")
@@ -85,6 +85,8 @@ root = openmc.Universe(cells=(fuel, gap, clad, moderator))
 
 geom = openmc.Geometry()
 geom.root_universe = root
+geom.export_to_xml()
+
 point = openmc.stats.Point((0, 0, 0))
 src = openmc.Source(space=point)
 
