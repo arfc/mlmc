@@ -73,9 +73,8 @@ for it in result_in_total:
 		if (it[len(it)-1][0] == ij[len(ij)-1][0]):
 			if (it[len(it)-1][1] == ij[len(ij)-1][1]):
 				if (it[len(it)-1][2] == ij[len(ij)-1][2]):
+					print(it)
 					print("there is a dup")
-		else:
-			print(count_dup)
 
 
 
