@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<tallies>
+  <filter id="1" type="cell">
+    <bins>1</bins>
+  </filter>
+  <tally id="1">
+    <filters>1</filters>
+    <nuclides>U235</nuclides>
+    <scores>total fission absorption (n,gamma)</scores>
+  </tally>
+</tallies>
