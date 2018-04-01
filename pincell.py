@@ -89,7 +89,7 @@ geom.export_to_xml()
 
 point = openmc.stats.Point((0, 0, 0))
 src = openmc.Source(space=point)
-settings = openmc.Settings()
+settings = openmc.Settings()#settings
 settings.source = src
 settings.batches = 100
 settings.inactive = 10
@@ -99,8 +99,8 @@ if settings is None:
 else:
 	print("wairi")
 
-# temp_list = [1,2,3]
-# settings.trace(temp_list)
+temp_list = [1,2,3]
+print(settings.trace())
 settings.export_to_xml()
 
 cell_filter = openmc.CellFilter(fuel)
