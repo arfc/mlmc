@@ -94,10 +94,10 @@ settings.source = src
 settings.batches = 100
 settings.inactive = 10
 settings.particles = 1000
-if settings is None:
-	print("wocaonima")
-else:
-	print("wairi")
+# if settings is None:
+# 	print("wocaonima")
+# else:
+# 	print("wairi")
 
 temp_list = [1,2,3]
 print(settings.track)
