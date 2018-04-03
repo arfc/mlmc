@@ -85,7 +85,23 @@ with open("test.csv","r") as track:
 		final.append(data_list)
 
 final = np.array(final)
-print(final)
+
+single_track = []
+with open("test.csv","r") as track:
+	reader = csv.reader(track)
+	for line in reader:
+		print(len(line))
+		for data in line:
+			try:
+				data_list = form_sentence_data_np(data)
+				single_track.append(data_list)
+			except:
+				print("head data")
+		break
+
+single_track = np.array(single_track)
+print(single_track)
+
 
 
 # space_x = np.zeros(len(space))
@@ -147,7 +163,12 @@ final_xz = fig.add_subplot(336)
 final_xz.scatter(final[:,1], final[:,2], c='g', marker='.')
 final_xz.set_xlabel('Y')
 final_xz.set_ylabel('Z')
+print("len is ", len(single_track))
+ax = fig.gca(projection='3d')
+sample_track = ax.plot(single_track[:,0], single_track[:,1],single_track[:,2], c='r', marker='.')
+# sample_track.set_xlabel('Y')
+# sample_track.set_ylabel('Z')
+# sample_track.set_zlabel('Z')
 # final_xz.title("xz plain")
-
 plt.show()
 
