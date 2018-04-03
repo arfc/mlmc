@@ -28,29 +28,40 @@ def append_next_file_name():
         return True
     temp = filename_list[-1]
     next_particle_number = temp[2]
-    next_generatipn_number = temp[1]
+    next_generation_number = temp[1]
     next_batch_number = temp[0]
 
     if temp[2] < particle_number:
         next_particle_number = temp[2] + 1
-        filename_list.append([next_batch_number,next_generatipn_number,next_particle_number])
-        return True
-    elif generation_number & temp[0] < batch_number & temp[0] < batch_number:
+        result = [next_batch_number, next_generation_number, next_particle_number]
+        filename_list.append(result)
+        return result
+
+    elif temp[1] < generation_number or temp[0] < batch_number:
         next_particle_number = 1
+
     if temp[1] < generation_number:
-        next_generatipn_number = temp[1] + 1
-        filename_list.append([next_batch_number,next_generatipn_number,next_particle_number])
-        return True
+        next_generation_number = temp[1] + 1
+        result = [next_batch_number, next_generation_number, next_particle_number]
+        filename_list.append(result)
+        return result
+
     elif temp[0] < batch_number:
-        next_generatipn_number = 1
+        next_generation_number = 1
+
     if temp[0] < batch_number:
         next_batch_number = temp[0] + 1
-        filename_list.append([next_batch_number,next_generatipn_number,next_particle_number])
+        result = [next_batch_number, next_generation_number, next_particle_number]
+        filename_list.append(result)
+        return result
 
     else:
         print("that's all")
-        return False
+        return None
 
+def get_file_name(number_array):
+    result = "trace_%d_%d_%d.csv" % (number_array[0],number_array[1],number_array[2])
+    return result
 
 class getThread(threading.Thread):
     def __init__(self, threadID, name, counter):
@@ -62,35 +73,26 @@ class getThread(threading.Thread):
     def run(self):
         global filename_list
         print("Starting " + self.name)
-        while(1):
+        while (1):
             threadLock.acquire()
             result = append_next_file_name()
             threadLock.release()
-            if result is False:
+            if result is None:
                 break
 
 
 threadLock = threading.Lock()
+
 threads = []
 
-# 创建新线程
-thread1 = getThread(1, "Thread-1", 1)
-thread2 = getThread(2, "Thread-2", 2)
-thread3 = getThread(3, "Thread-2", 3)
-
-# 开启新线程
-thread1.start()
-thread2.start()
-thread3.start()
-
-# 添加线程到线程列表
-threads.append(thread1)
-threads.append(thread2)
-threads.append(thread3)
-
-# 等待所有线程完成
+# create threads
+for i in range(1,5):
+    temp_thread = getThread(i,"Thread-"+str(i),i)
+    temp_thread.start()
+    threads.append(temp_thread)
+# wait join threads
 for t in threads:
     t.join()
-print("hahah")
-print(filename_list)
+
 print(len(filename_list))
+print(get_file_name([1,2,2]))
