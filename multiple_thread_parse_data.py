@@ -62,17 +62,20 @@ def append_next_file_name():
         return None
 
 def get_file_name(number_array):
-    result = "trace_%d_%d_%d.csv" % (number_array[0],number_array[1],number_array[2])
+    result = "track_%d_%d_%d.h5" % (number_array[0],number_array[1],number_array[2])
     return result
 
 
 
 def get_final_state(file_name):
+    print("try to get final state")
+    print(file_name)
     try:
         f = h5py.File(file_name, 'r')
     except:
         print("there is no such file")
         exit()
+    print("has the file")
     datasetNames = [n for n in f.keys()]
     for key in datasetNames:
         temp = f[key]
