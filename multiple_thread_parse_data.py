@@ -1,15 +1,16 @@
 # import thread
 import threading
 import sys
+import h5py
 
 try:
-    # batch_number = int(sys.argv[-4])
-    # generation_number = int(sys.argv[-3])
-    # particle_number = int(sys.argv[-2])
-    # csv_name = sys.argv[-1]
-    batch_number = int(10)
-    generation_number = int(10)
-    particle_number = int(10)
+    batch_number = int(sys.argv[-4])
+    generation_number = int(sys.argv[-3])
+    particle_number = int(sys.argv[-2])
+    csv_name = sys.argv[-1]
+    # batch_number = int(10)
+    # generation_number = int(10)
+    # particle_number = int(10)
 except:
     print(
         "There should be four arguments standing for batch number,generation number,particle number,csv name repectively")
@@ -17,7 +18,7 @@ except:
 
 # list of all file names
 filename_list = []
-
+final_states = []
 def append_next_file_name():
     global filename_list
     global batch_number
@@ -34,7 +35,8 @@ def append_next_file_name():
     if temp[2] < particle_number:
         next_particle_number = temp[2] + 1
         result = [next_batch_number, next_generation_number, next_particle_number]
-        filename_list.append(result)
+        filename_list.append(
+            result)
         return result
 
     elif temp[1] < generation_number or temp[0] < batch_number:
@@ -62,6 +64,24 @@ def append_next_file_name():
 def get_file_name(number_array):
     result = "trace_%d_%d_%d.csv" % (number_array[0],number_array[1],number_array[2])
     return result
+    datasetNames = [n for n in f.keys()]
+    for key in datasetNames:
+        temp = f[key_list[i]]
+        try:
+            temp_data = temp[:]
+            final_states.append(temp_data[-1])
+        except:
+            print("empty")
+
+
+def get_final_state(file_name):
+    try:
+        f = h5py.File(file_name, 'r')
+    except:
+        print("there is no such file")
+        exit()
+
+
 
 class getThread(threading.Thread):
     def __init__(self, threadID, name, counter):
@@ -80,7 +100,6 @@ class getThread(threading.Thread):
                 break
             else:
                 file_name = get_file_name(result)
-                print(file_name)
             threadLock.release()
 
 
@@ -98,4 +117,3 @@ for t in threads:
     t.join()
 
 print(len(filename_list))
-print(get_file_name([1,2,2]))
