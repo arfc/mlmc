@@ -69,4 +69,5 @@ vacuum = openmc.Cell(region = hallway)
 # define universe
 universe = openmc.Universe(cells=[concrete,vacuum,fuel])
 
+
 openmc.run()
