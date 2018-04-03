@@ -2,7 +2,9 @@
 import threading
 import sys
 import h5py
-
+import numpy as np
+import sklearn
+import csv
 try:
     batch_number = int(sys.argv[-4])
     generation_number = int(sys.argv[-3])
@@ -68,14 +70,14 @@ def get_file_name(number_array):
 
 
 def get_final_state(file_name):
-    print("try to get final state")
+    #print("try to get final state")
     print(file_name)
     try:
         f = h5py.File(file_name, 'r')
     except:
         print("there is no such file")
         exit()
-    print("has the file")
+    #print("has the file")
     datasetNames = [n for n in f.keys()]
     for key in datasetNames:
         temp = f[key]
@@ -122,5 +124,10 @@ for i in range(1,5):
 for t in threads:
     t.join()
 
+final_states = np.array(final_states)
+final_states_csv =open(csv_name,"w")
+writer = csv.writer(final_states_csv)
+writer.writerow(final_states)
 print(len(filename_list))
 print(final_states)
+print(type(final_states))
