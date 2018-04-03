@@ -1,7 +1,7 @@
 # import thread
 import threading
 import sys
-import h5py
+# import h5py
 
 try:
     batch_number = int(sys.argv[-4])
@@ -64,22 +64,23 @@ def append_next_file_name():
 def get_file_name(number_array):
     result = "trace_%d_%d_%d.csv" % (number_array[0],number_array[1],number_array[2])
     return result
-    datasetNames = [n for n in f.keys()]
-    for key in datasetNames:
-        temp = f[key_list[i]]
-        try:
-            temp_data = temp[:]
-            final_states.append(temp_data[-1])
-        except:
-            print("empty")
 
 
-def get_final_state(file_name):
-    try:
-        f = h5py.File(file_name, 'r')
-    except:
-        print("there is no such file")
-        exit()
+
+# def get_final_state(file_name):
+#     try:
+#         f = h5py.File(file_name, 'r')
+#     except:
+#         print("there is no such file")
+#         exit()
+#     datasetNames = [n for n in f.keys()]
+#     for key in datasetNames:
+#         temp = f[key_list[i]]
+#         try:
+#             temp_data = temp[:]
+#             final_states.append(temp_data[-1])
+#         except:
+#             print("empty")
 
 
 
