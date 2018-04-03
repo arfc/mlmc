@@ -103,6 +103,7 @@ class getThread(threading.Thread):
                 break
             else:
                 file_name = get_file_name(result)
+                get_final_state(file_name)
 
 
 threadLock = threading.Lock()
