@@ -9,7 +9,7 @@ try:
     particle_number = int(sys.argv[-2])
     csv_name = sys.argv[-1]
     # batch_number = int(10)
-    # generation_number = int(10)
+    # generation_number = int(1)
     # particle_number = int(10)
 except:
     print(
@@ -97,11 +97,12 @@ class getThread(threading.Thread):
         while (1):
             threadLock.acquire()
             result = append_next_file_name()
+            threadLock.release()
+
             if result is None:
                 break
             else:
                 file_name = get_file_name(result)
-            threadLock.release()
 
 
 threadLock = threading.Lock()
