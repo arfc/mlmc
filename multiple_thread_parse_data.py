@@ -1,7 +1,7 @@
 # import thread
 import threading
 import sys
-# import h5py
+import h5py
 
 try:
     batch_number = int(sys.argv[-4])
@@ -67,20 +67,20 @@ def get_file_name(number_array):
 
 
 
-# def get_final_state(file_name):
-#     try:
-#         f = h5py.File(file_name, 'r')
-#     except:
-#         print("there is no such file")
-#         exit()
-#     datasetNames = [n for n in f.keys()]
-#     for key in datasetNames:
-#         temp = f[key_list[i]]
-#         try:
-#             temp_data = temp[:]
-#             final_states.append(temp_data[-1])
-#         except:
-#             print("empty")
+def get_final_state(file_name):
+    try:
+        f = h5py.File(file_name, 'r')
+    except:
+        print("there is no such file")
+        exit()
+    datasetNames = [n for n in f.keys()]
+    for key in datasetNames:
+        temp = f[key]
+        try:
+            temp_data = temp[:]
+            final_states.append(temp_data[-1])
+        except:
+            print("empty")
 
 
 
@@ -119,3 +119,4 @@ for t in threads:
     t.join()
 
 print(len(filename_list))
+print(final_states)
