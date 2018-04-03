@@ -25,7 +25,7 @@ def append_next_file_name():
     global generation_number
     if len(filename_list) == 0:
         filename_list.append([1, 1, 1])
-        return True
+        return [1,1,1]
     temp = filename_list[-1]
     next_particle_number = temp[2]
     next_generation_number = temp[1]
@@ -76,9 +76,12 @@ class getThread(threading.Thread):
         while (1):
             threadLock.acquire()
             result = append_next_file_name()
-            threadLock.release()
             if result is None:
                 break
+            else:
+                file_name = get_file_name(result)
+                print(file_name)
+            threadLock.release()
 
 
 threadLock = threading.Lock()
