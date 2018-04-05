@@ -88,7 +88,7 @@ universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
 
 p = openmc.Plot()
 p.filename = 'plot'
-p.width = (10,10)
+p.width = (2,2)
 p.pixels = (200, 200)
 p.color_by = 'material'
 p.colors = {wall: 'yellow', detector: 'blue', source: 'red'}
