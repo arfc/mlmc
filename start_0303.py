@@ -13,7 +13,8 @@ detector.set_density('g/cm3', 1) # ?
 
 # set source material
 source = openmc.Material(3, "source")
-source.add_nuclide('Pt196', 1) # which pt to use?
+source.add_nuclide('U235', 0.8)
+source.add_nuclide('U238', 0.2)
 source.set_density('atom/cm3', 10**4)
 
 class Start_point:
@@ -59,15 +60,31 @@ hallway = cavity_y | cavity_z
 basic_start = Start_point(0.0,0.0,0.0)
 basic_cube_entity = create_cube(1.0,1.0,1.0,basic_start)
 basic_cube = basic_cube_entity & (~hallway)
+
 # define the source
-rad_source = openmc.Sphere(x0 = 0.5, y0 = 1.0,z0 = 0.5, R=0.08, name = "the_only_source")
+rad_source = openmc.Sphere(x0 = 0.5, y0 = 1.0, z0 = 0.5, R=0.08, name = "the_only_source")
 inside_rad = -rad_source
 fuel = openmc.Cell(fill = source, region = inside_rad)
-# define cell
+
+# define the detector
+detector_sphere = openmc.Sphere(x0 = 1, y0 = 0.5, z0 = 0.5, R=0.08, name = "detector_point")
+inside_detector = -detector_sphere
+detector_cell = openmc.Cell(fill = detector, region = inside_detector)
+
+# set tally
+tally = openmc.Tally(name='detector')
+tally.filters = [openmc.CellFilter([detector_cell])]
+energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
+tally.filters.append(energy_filter)
+tally.scores = ['absorption']
+
+
+# define other cell
 concrete = openmc.Cell(fill = wall, region = basic_cube)
 vacuum = openmc.Cell(region = hallway)
+
 # define universe
-universe = openmc.Universe(cells=[concrete,vacuum,fuel])
+universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
 
 
 openmc.run()
