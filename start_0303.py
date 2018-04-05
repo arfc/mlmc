@@ -95,5 +95,5 @@ p.colors = {wall: 'yellow', detector: 'blue', source: 'red'}
 plots = openmc.Plots([p])
 plots.export_to_xml()
 openmc.plot_geometry()
-#openmc.run(tracks = True)
+#openmc.run(particles = 1000, tracks = True)
 openmc.run()
