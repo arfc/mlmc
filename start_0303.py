@@ -86,5 +86,14 @@ vacuum = openmc.Cell(region = hallway)
 # define universe
 universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
 
-
+p = openmc.Plot()
+p.filename = 'plot'
+p.width = (10,10)
+p.pixels = (200, 200)
+p.color_by = 'material'
+p.colors = {wall: 'yellow', detector: 'blue', source: 'red'}
+plots = openmc.Plots([p])
+plots.export_to_xml()
+openmc.plot_geometry()
+#openmc.run(tracks = True)
 openmc.run()
