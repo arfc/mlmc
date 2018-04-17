@@ -72,11 +72,13 @@ inside_detector = -detector_sphere
 detector_cell = openmc.Cell(fill = detector, region = inside_detector)
 
 # set tally
+tallies_file = openmc.Tallies()
 tally = openmc.Tally(name='detector')
 tally.filters = [openmc.CellFilter([detector_cell])]
 energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
 tally.filters.append(energy_filter)
 tally.scores = ['absorption']
+tallies_file.append(tally)
 
 
 # define other cell
@@ -84,7 +86,7 @@ concrete = openmc.Cell(fill = wall, region = basic_cube)
 vacuum = openmc.Cell(region = hallway)
 
 # define universe
-universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell, tally])
+universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
 
 p = openmc.Plot()
 p.filename = 'plot'
