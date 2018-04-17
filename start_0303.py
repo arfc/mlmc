@@ -6,7 +6,7 @@ mats = openmc.Materials()
 
 # set wall material
 wall_material = openmc.Material(1, "wall_material")
-wall_material.add_nuclide('Pb205', 1) # which pb to use
+wall_material.add_nuclide('Pb204', 1) # which pb to use
 wall_material.set_density('g/cm3', 1) # ???
 
 # set observation point
