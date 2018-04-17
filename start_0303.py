@@ -80,14 +80,14 @@ inside_detector = -detector_sphere
 detector_cell = openmc.Cell(fill = detector_material, region = inside_detector)
 
 # set tally
-tallies_file = openmc.Tallies()
-tally = openmc.Tally(name='detector')
-tally.filters = [openmc.CellFilter([detector_cell])]
-energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
-tally.filters.append(energy_filter)
-tally.scores = ['absorption']
-tallies_file.append(tally)
-tallies_file.export_to_xml()
+# tallies_file = openmc.Tallies()
+# tally = openmc.Tally(name='detector')
+# tally.filters = [openmc.CellFilter([detector_cell])]
+# energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
+# tally.filters.append(energy_filter)
+# tally.scores = ['absorption']
+# tallies_file.append(tally)
+# tallies_file.export_to_xml()
 
 
 # define other cell
