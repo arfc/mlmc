@@ -84,7 +84,7 @@ concrete = openmc.Cell(fill = wall, region = basic_cube)
 vacuum = openmc.Cell(region = hallway)
 
 # define universe
-universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
+universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell, tally])
 
 p = openmc.Plot()
 p.filename = 'plot'
