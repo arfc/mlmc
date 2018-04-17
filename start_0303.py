@@ -1,21 +1,29 @@
 import openmc
 import numpy as np
 
+
+mats = openmc.Materials()
+
 # set wall material
-wall = openmc.Material(1, "wall")
-wall.add_nuclide('Pb205', 1) # which pb to use
-wall.set_density('g/cm3', 1) # ???
+wall_material = openmc.Material(1, "wall_material")
+wall_material.add_nuclide('Pb205', 1) # which pb to use
+wall_material.set_density('g/cm3', 1) # ???
 
 # set observation point
-detector = openmc.Material(2, "detector")
-detector.add_nuclide('Xe135', 1)
-detector.set_density('g/cm3', 1) # ?
+detector_material = openmc.Material(2, "detector_material")
+detector_material.add_nuclide('Xe135', 1)
+detector_material.set_density('g/cm3', 1) # ?
 
 # set source material
-source = openmc.Material(3, "source")
-source.add_nuclide('U235', 0.8)
-source.add_nuclide('U238', 0.2)
-source.set_density('atom/cm3', 10**4)
+source_material = openmc.Material(3, "source_material")
+source_material.add_nuclide('U235', 0.8)
+source_material.add_nuclide('U238', 0.2)
+source_material.set_density('atom/cm3', 10**4)
+
+mats.append(wall_material)
+mats.append(detector_material)
+mats.append(source_material)
+mats.export_to_xml()
 
 class Start_point:
     def __init__(self, x_, y_, z_):
@@ -64,12 +72,12 @@ basic_cube = basic_cube_entity & (~hallway)
 # define the source
 rad_source = openmc.Sphere(x0 = 0.5, y0 = 1.0, z0 = 0.5, R=0.08, name = "the_only_source")
 inside_rad = -rad_source
-fuel = openmc.Cell(fill = source, region = inside_rad)
+fuel = openmc.Cell(fill = source_material, region = inside_rad)
 
 # define the detector
 detector_sphere = openmc.Sphere(x0 = 1, y0 = 0.5, z0 = 0.5, R=0.08, name = "detector_point")
 inside_detector = -detector_sphere
-detector_cell = openmc.Cell(fill = detector, region = inside_detector)
+detector_cell = openmc.Cell(fill = detector_material, region = inside_detector)
 
 # set tally
 tallies_file = openmc.Tallies()
@@ -79,23 +87,35 @@ energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
 tally.filters.append(energy_filter)
 tally.scores = ['absorption']
 tallies_file.append(tally)
+tallies_file.export_to_xml()
 
 
 # define other cell
-concrete = openmc.Cell(fill = wall, region = basic_cube)
+concrete = openmc.Cell(fill = wall_material, region = basic_cube)
 vacuum = openmc.Cell(region = hallway)
 
 # define universe
 universe = openmc.Universe(cells=[concrete,vacuum,fuel,detector_cell])
+geom = openmc.Geometry()
+geom.root_universe = universe
 
 p = openmc.Plot()
 p.filename = 'plot'
 p.width = (2,2)
 p.pixels = (200, 200)
 p.color_by = 'material'
-p.colors = {wall: 'yellow', detector: 'blue', source: 'red'}
+p.colors = {wall_material: 'yellow', detector_material: 'blue', source_material: 'red'}
 plots = openmc.Plots([p])
 plots.export_to_xml()
 openmc.plot_geometry()
-#openmc.run(particles = 1000, tracks = True)
+
+point = openmc.stats.Point((0, 0, 0))
+src = openmc.Source(space=point)
+settings = openmc.Settings()
+settings.source = src
+settings.batches = 100
+settings.inactive = 10
+settings.particles = 1000
+settings.export_to_xml()
+
 openmc.run()
