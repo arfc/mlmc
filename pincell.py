@@ -16,12 +16,18 @@ water = openmc.Material(3, "h2o")
 water.add_nuclide('H1', 2.0)
 water.add_nuclide('O16', 1.0)
 water.set_density('g/cm3', 1.0)
-
 water.add_s_alpha_beta('c_H_in_H2O')
+
+# set observation point
+detector_material = openmc.Material(2, "detector_material")
+detector_material.add_nuclide('Xe135', 1)
+detector_material.set_density('g/cm3', 1) # ?
+
+
 mats = openmc.Materials([uo2, zirconium, water])
 mats = openmc.Materials()
 mats.append(uo2)
-mats += [zirconium, water]
+mats += [zirconium, water,detector_material]
 mats.export_to_xml()
 
 water.remove_nuclide('O16')
@@ -37,6 +43,8 @@ inside_sphere = -sph
 outside_sphere = +sph
 
 z_plane = openmc.ZPlane(z0=0)
+
+
 northern_hemisphere = -sph & +z_plane
 northern_hemisphere.bounding_box
 cell = openmc.Cell()
@@ -71,6 +79,10 @@ bottom = openmc.YPlane(y0=-pitch/2, boundary_type='reflective')
 top = openmc.YPlane(y0=pitch/2, boundary_type='reflective')
 
 
+detector_sphere = openmc.Sphere(x0 = 1, y0 = 0.5, z0 = 0.5, R=0.08, name = "detector_point")
+inside_detector = -detector_sphere
+detector_cell = openmc.Cell(fill = detector_material, region = inside_detector)
+
 
 water_region = +left & -right & +bottom & -top & +clad_or
 
@@ -81,7 +93,7 @@ box = openmc.get_rectangular_prism(width=pitch, height=pitch,
                                    boundary_type='reflective')
 
 water_region = box & +clad_or
-root = openmc.Universe(cells=(fuel, gap, clad, moderator))
+root = openmc.Universe(cells=(fuel, gap, clad, moderator,detector_cell))
 
 geom = openmc.Geometry()
 geom.root_universe = root
