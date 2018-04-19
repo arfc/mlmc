@@ -20,4 +20,8 @@
     <nuclide ao="1.0" name="O16" />
     <sab name="c_H_in_H2O" />
   </material>
+  <material id="4" name="detector_material">
+    <density units="g/cm3" value="1" />
+    <nuclide ao="1" name="Xe135" />
+  </material>
 </materials>
