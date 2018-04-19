@@ -19,7 +19,7 @@ water.set_density('g/cm3', 1.0)
 water.add_s_alpha_beta('c_H_in_H2O')
 
 # set observation point
-detector_material = openmc.Material(2, "detector_material")
+detector_material = openmc.Material(4, "detector_material")
 detector_material.add_nuclide('Xe135', 1)
 detector_material.set_density('g/cm3', 1) # ?
 
