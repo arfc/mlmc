@@ -43,6 +43,8 @@ sph = openmc.Sphere(R=1.0)
 inside_sphere = -sph
 outside_sphere = +sph
 z_plane = openmc.ZPlane(z0=0)
+
+
 northern_hemisphere = -sph & +z_plane
 northern_hemisphere.bounding_box
 
@@ -141,4 +143,3 @@ print("track is ",settings.track)
 print("trace is ",settings.trace)
 
 print(settings.track)
-
