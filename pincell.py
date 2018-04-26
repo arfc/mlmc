@@ -85,7 +85,7 @@ moderator.region = water_region
 # water_region = box & +clad_or
 
 ######## Cell5 ########
-detector_cell = openmc.Sphere(x0 = 1, y0 = 0.5, z0 = 0.5, R=0.08, name = "detector_point")
+detector_cell = openmc.Sphere(x0 = 0, y0 = 0.1, z0 = 0.1, R=0.08, name = "detector_point")
 inside_detector = -detector_cell
 detector_cell = openmc.Cell(fill = detector_material, region = inside_detector)
 
@@ -105,7 +105,7 @@ settings = openmc.Settings()
 settings.source = src
 settings.batches = 100
 settings.inactive = 10
-settings.particles = 1000
+settings.particles = 5000
 
 temp_list = [1,2,3]
 print(settings.track)
@@ -120,8 +120,8 @@ settings.export_to_xml()
 
 tally = openmc.Tally(name='detector')
 tally.filters = [openmc.CellFilter([detector_cell])]
-energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
-tally.filters.append(energy_filter)
+# energy_filter = openmc.EnergyFilter([0.0, 4.0, 1.0e6])
+# tally.filters.append(energy_filter)
 tally.scores = ['absorption']
 
 
